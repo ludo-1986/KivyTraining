@@ -1,0 +1,21 @@
+<MainScreen>:
+    md_bg_color: self.theme_cls.surfaceColor
+
+    MDBoxLayout:
+        orientation: "vertical"  # Donne l'orientation de l'écran
+        padding: "20dp"
+        spacing: "20dp"
+
+        MDLabel:
+            text: "Maîtrise des bases"
+            halign: "center"
+            font_style: "Display"
+            role: "small"
+
+        MDButton:
+            style: "filled"
+            pos_hint: {"center_x": 0.5}
+            on_release: root.clickButton()
+
+            MDButtonText:
+                text: "Bonjour"
