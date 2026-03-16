@@ -10,6 +10,8 @@ class MainScreen(MDScreen):
     
     # On créé une variable pour changer le texte de notre label
     textLabel = StringProperty("Maîtrise des bases")
+    # On ajoute une variable pour la police
+    policeLabel = StringProperty("comfortaa")
     
     # On crée la fonction pour afficher le texte dans le terminal
     def clickButton(self):
@@ -21,6 +23,11 @@ class MainScreen(MDScreen):
         
         self.textLabel = "Les bases sont maîtrisées, !!! BRAVO !!!"
         
+    # On change la police
+    def changePoliceLabel(self):
+        
+        self.policeLabel = "tomorrow" if self.policeLabel == "comfortaa" else "comfortaa"
+        
         
 class MainApp(MDApp):
     
@@ -31,19 +38,31 @@ class MainApp(MDApp):
         
         # On enregistre les police personnalisées sans oublier l'import de "LabelBase"
         LabelBase.register(name="hackPolice", fn_regular="assets/fonts/hack.ttf")
-        LabelBase.register(name="3270police", fn_regular="assets/fonts/3270.ttf")
+        LabelBase.register(name="3270Police", fn_regular="assets/fonts/3270.ttf")
+        LabelBase.register(name="comfortaaPolice", fn_regular="assets/fonts/comfortaa.ttf")
+        LabelBase.register(name="tomorrowPolice", fn_regular="assets/fonts/tomorrow.ttf")
         
         # On update le dictionnaire "font_style"
         self.theme_cls.font_styles.update({
             "3270": {
-                "large": {"line-height": 1.64, "font-name": "3270police", "font-size": sp(57)},
-                "medium": {"line-height": 1.52,"font-name": "3270police","font-size": sp(45)},
-                "small": {"line-height": 1.44, "font-name": "3270police", "font-size": sp(36)}
+                "large": {"line-height": 1.64, "font-name": "3270Police", "font-size": sp(57)},
+                "medium": {"line-height": 1.52,"font-name": "3270Police","font-size": sp(45)},
+                "small": {"line-height": 1.44, "font-name": "3270Police", "font-size": sp(36)}
                 },
             "hack": {
                 "large": {"line-height": 1.64, "font-name": "hackPolice", "font-size": sp(57)},
                 "medium": {"line-height": 1.52,"font-name": "hackPolice","font-size": sp(45)},
                 "small": {"line-height": 1.44, "font-name": "hackPolice", "font-size": sp(36)}
+                ,},
+            "comfortaa": {
+                "large": {"line-height": 1.64, "font-name": "comfortaaPolice", "font-size": sp(57)},
+                "medium": {"line-height": 1.52,"font-name": "comfortaaPolice","font-size": sp(45)},
+                "small": {"line-height": 1.44, "font-name": "comfortaaPolice", "font-size": sp(36)}
+                ,},
+            "tomorrow": {
+                "large": {"line-height": 1.64, "font-name": "tomorrowPolice", "font-size": sp(57)},
+                "medium": {"line-height": 1.52,"font-name": "tomorrowPolice","font-size": sp(45)},
+                "small": {"line-height": 1.44, "font-name": "tomorrowPolice", "font-size": sp(36)}
                 ,}
             ,})
         

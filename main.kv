@@ -12,13 +12,12 @@
         MDLabel:
             text: root.textLabel
             halign: "center"
-            font_style: "Display"
+            font_style: root.policeLabel
             role: "medium"
 
         MDBoxLayout:
             orientation: "horizontal"
             padding: dp(20)
-            theme_bg_color: "Custom"
 
             MDFloatLayout:
                 size_hint_x: 0.5
@@ -46,32 +45,54 @@
                         text: "Maîtrisé"
 
         MDBoxLayout:
-            orientation: "vertical"
+            orientation: "horizontal"
             padding: dp(20)
 
-            MDLabel:
-                text: app.textStyle
-                halign: "center"
-                font_style: "3270" if app.theme_cls.theme_style == "Light" else "hack"
-                role: "small"
-                theme_text_color: "Custom"
-                text_color: "navy" if app.theme_cls.theme_style == "Light" else "greenyellow"
+            MDFloatLayout:
+                size_hint_x: 0.5
 
-            MDButton:
-                style: "outlined"
-                pos_hint: {"center_x": 0.5, "center_y": 0.5}
-                on_release: app.switchThemeStyle()
-                theme_line_color: "Custom"
-                line_color: "navy" if app.theme_cls.theme_style == "Light" else "greenyellow"
-                line_width: 2
+                MDButton:
+                    style: "outlined"
+                    pos_hint: {"center_x": 0.5, "center_y": 0.4}
+                    on_release: root.changePoliceLabel()
+                    theme_line_color: "Custom"
+                    line_color: "navy" if app.theme_cls.theme_style == "Light" else "greenyellow"
+                    line_width: 2
 
-                MDButtonIcon:
-                    icon: "white-balance-sunny" if app.theme_cls.theme_style == "Light" else "moon-waning-crescent"
+                    MDButtonText:
+                        text: "Change la police"
+                        font_style: "Title"
+                        theme_text_color: "Custom"
+                        text_color: utils.get_color_from_hex(lightText) if app.theme_cls.theme_style == "Light" else utils.get_color_from_hex(darkText)
+
+
+            MDFloatLayout:
+                size_hint_x: 0.5
+
+                MDLabel:
+                    text: app.textStyle
+                    pos_hint: {"center_x": 0.5, "center_y": 0.8}
+                    halign: "center"
+                    font_style: "3270" if app.theme_cls.theme_style == "Light" else "hack"
+                    role: "small"
                     theme_text_color: "Custom"
-                    text_color: utils.get_color_from_hex(lightText) if app.theme_cls.theme_style == "Light" else utils.get_color_from_hex(darkText)
+                    text_color: "navy" if app.theme_cls.theme_style == "Light" else "greenyellow"
 
-                MDButtonText:
-                    text: "Change le style"
-                    font_style: "Title"
-                    theme_text_color: "Custom"
-                    text_color: utils.get_color_from_hex(lightText) if app.theme_cls.theme_style == "Light" else utils.get_color_from_hex(darkText)
+                MDButton:
+                    style: "outlined"
+                    pos_hint: {"center_x": 0.5, "center_y": 0.4}
+                    on_release: app.switchThemeStyle()
+                    theme_line_color: "Custom"
+                    line_color: "navy" if app.theme_cls.theme_style == "Light" else "greenyellow"
+                    line_width: 2
+
+                    MDButtonIcon:
+                        icon: "white-balance-sunny" if app.theme_cls.theme_style == "Light" else "moon-waning-crescent"
+                        theme_text_color: "Custom"
+                        text_color: utils.get_color_from_hex(lightText) if app.theme_cls.theme_style == "Light" else utils.get_color_from_hex(darkText)
+
+                    MDButtonText:
+                        text: "Change le style"
+                        font_style: "Title"
+                        theme_text_color: "Custom"
+                        text_color: utils.get_color_from_hex(lightText) if app.theme_cls.theme_style == "Light" else utils.get_color_from_hex(darkText)
