@@ -1,21 +1,77 @@
+#:import utils kivy.utils
+#:set lightText "#0a0c0d"
+#:set darkText "#d0d0d0"
+
 <MainScreen>:
     md_bg_color: self.theme_cls.surfaceColor
 
     MDBoxLayout:
         orientation: "vertical"  # Donne l'orientation de l'écran
         padding: "20dp"
-        spacing: "20dp"
 
         MDLabel:
-            text: "Maîtrise des bases"
+            text: root.textLabel
             halign: "center"
             font_style: "Display"
-            role: "small"
+            role: "medium"
 
-        MDButton:
-            style: "filled"
-            pos_hint: {"center_x": 0.5}
-            on_release: root.clickButton()
+        MDBoxLayout:
+            orientation: "horizontal"
+            padding: dp(20)
+            theme_bg_color: "Custom"
 
-            MDButtonText:
-                text: "Bonjour"
+            MDFloatLayout:
+                size_hint_x: 0.5
+
+                MDButton:
+                    style: "filled"
+                    pos_hint: {"center_x": 0.5, "center_y": 0.5}
+                    on_release: root.clickButton()
+                    theme_bg_color: "Custom"
+
+                    MDButtonText:
+                        text: "Bonjour"
+                        theme_text_color: "Custom"
+
+            MDFloatLayout:
+                size_hint_x: 0.5
+
+                MDButton:
+                    style: "elevated"
+                    pos_hint: {"center_x": 0.5, "center_y": 0.5}
+                    on_release: root.changeTextLabel()
+                    elevation: 5
+
+                    MDButtonText:
+                        text: "Maîtrisé"
+
+        MDBoxLayout:
+            orientation: "vertical"
+            padding: dp(20)
+
+            MDLabel:
+                text: app.textStyle
+                halign: "center"
+                font_style: "3270" if app.theme_cls.theme_style == "Light" else "hack"
+                role: "small"
+                theme_text_color: "Custom"
+                text_color: "navy" if app.theme_cls.theme_style == "Light" else "greenyellow"
+
+            MDButton:
+                style: "outlined"
+                pos_hint: {"center_x": 0.5, "center_y": 0.5}
+                on_release: app.switchThemeStyle()
+                theme_line_color: "Custom"
+                line_color: "navy" if app.theme_cls.theme_style == "Light" else "greenyellow"
+                line_width: 2
+
+                MDButtonIcon:
+                    icon: "white-balance-sunny" if app.theme_cls.theme_style == "Light" else "moon-waning-crescent"
+                    theme_text_color: "Custom"
+                    text_color: utils.get_color_from_hex(lightText) if app.theme_cls.theme_style == "Light" else utils.get_color_from_hex(darkText)
+
+                MDButtonText:
+                    text: "Change le style"
+                    font_style: "Title"
+                    theme_text_color: "Custom"
+                    text_color: utils.get_color_from_hex(lightText) if app.theme_cls.theme_style == "Light" else utils.get_color_from_hex(darkText)
