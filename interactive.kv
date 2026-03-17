@@ -33,6 +33,16 @@
                 text: "On pourra vous dire bonjour"
                 mode: "on_focus"
 
+        MDTextField:
+            id: fieldAge  # C'est ici qu'on donne l'ID à rechercher
+            mode: "filled"
+            size_hint_x: 0.8
+            pos_hint: {'center_x': 0.5,'center_y': 0.5}
+            input_filter: "int"
+
+            MDTextFieldHintText:
+                text: "Entrez votre age"
+
         MDButton:
             style: "filled"
             pos_hint: {'center_x': 0.5,'center_y': 0.5}

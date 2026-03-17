@@ -12,14 +12,23 @@ class SecondScreen(MDScreen):
         
         # On récupère le nom de l'utilisateur
         userName = self.ids.fieldName.text.capitalize()
+        userAge = self.ids.fieldAge.text
         
         if userName:
-            
             self.textHello = f"Bonjour {userName}, ravis de te rencontrer"
-            
         else:
-            
             self.textHello = "Bonjour utilisateur, comment vous appelez vous ?"
+            
+        if userAge:
+            self.textHello += f"\nVous avez {userAge} ans,"
+            if int(userAge) >= 60:
+                self.textHello += "vous êtes senior"
+            elif int(userAge) < 18:
+                self.textHello += "vous êtes mineur"
+            else:
+                self.textHello += "vous êtes majeur"
+        else:
+            self.textHello += "\nNous n'avons pas reçu votre age"
             
         
         
