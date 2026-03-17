@@ -1,0 +1,42 @@
+<SecondScreen>:
+    md_bg_color: self.theme_cls.surfaceColor
+
+    MDBoxLayout:
+        orientation: "vertical"  # Donne l'orientation de l'écran
+        padding: dp(30)
+        spacing: dp(50)
+
+        MDLabel:
+            text: "Interaction avec l'utilisateur"
+            halign: "center"
+            font_style: "Display"
+            role: "medium"
+            pos_hint: {'center_x': 0.5,'center_y': 0.5}
+
+        MDLabel:
+            text: root.textHello
+            halign: "center"
+            font_style: "Display"
+            role: "small"
+            pos_hint: {'center_x': 0.5,'center_y': 0.5}
+
+        MDTextField:
+            id: fieldName  # C'est ici qu'on donne l'ID à rechercher
+            mode: "outlined"
+            size_hint_x: 0.8
+            pos_hint: {'center_x': 0.5,'center_y': 0.5}
+
+            MDTextFieldHintText:
+                text: "Entrez votre prénom"
+
+            MDTextFieldHelperText:
+                text: "On pourra vous dire bonjour"
+                mode: "on_focus"
+
+        MDButton:
+            style: "filled"
+            pos_hint: {'center_x': 0.5,'center_y': 0.5}
+            on_release: root.validateName()
+
+            MDButtonText:
+                text: "Envoyer"
