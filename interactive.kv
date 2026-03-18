@@ -4,7 +4,15 @@
     MDBoxLayout:
         orientation: "vertical"  # Donne l'orientation de l'écran
         padding: dp(30)
-        spacing: dp(50)
+        spacing: dp(30)
+
+        MDButton:
+            style: "filled"
+            pos_hint: {'center_x': 0.5,'center_y': 0.5}
+            on_release: root.manager.current = "ecran_principal"
+
+            MDButtonText:
+                text: "revenir à l'entrée"
 
         MDLabel:
             text: "Interaction avec l'utilisateur"

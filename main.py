@@ -1,39 +1,28 @@
+import darkdetect
+
 from kivy.core.text import LabelBase
 from kivy.metrics import sp
 from kivy.properties import StringProperty
 
 from kivymd.app import MDApp
-from kivymd.uix.screen import MDScreen
+from kivymd.uix.screenmanager import MDScreenManager
+from kivy.lang import Builder
+
+from label import MainScreen
+from interactive import SecondScreen
 
 
-class MainScreen(MDScreen):
-    
-    # On créé une variable pour changer le texte de notre label
-    textLabel = StringProperty("Maîtrise des bases")
-    # On ajoute une variable pour la police
-    policeLabel = StringProperty("comfortaa")
-    
-    # On crée la fonction pour afficher le texte dans le terminal
-    def clickButton(self):
-        
-        print("Bonjour, le bouton fonctionne")
-        
-    # On change le texte de notre label
-    def changeTextLabel(self):
-        
-        self.textLabel = "Les bases sont maîtrisées, !!! BRAVO !!!"
-        
-    # On change la police
-    def changePoliceLabel(self):
-        
-        self.policeLabel = "tomorrow" if self.policeLabel == "comfortaa" else "comfortaa"
-        
-        
+class WindowManager(MDScreenManager):
+    pass
+
+
 class MainApp(MDApp):
     
     textStyle = StringProperty()
     
-    # La fonction pour construire la fenêtre de l'application
+    # On créé une variable vide pour stocker le nom de l'utilisateur
+    userNameStored = StringProperty("Utilisateur")
+    
     def build(self):
         
         # On enregistre les police personnalisées sans oublier l'import de "LabelBase"
@@ -65,20 +54,30 @@ class MainApp(MDApp):
                 "small": {"line-height": 1.44, "font-name": "tomorrowPolice", "font-size": sp(36)}
                 ,}
             ,})
-        
-        # On choisi un thème de couleur
+    
+        Builder.load_file("label.kv")
+        Builder.load_file("interactive.kv")
+    
         self.theme_cls.primary_palette = "SeaGreen"
         
-        # Cette ligne permet de récupérer le style du système (PC ou Smartphone)
-        self.theme_cls.theme_style = "Dark" if self.theme_cls._get_theme_style == "Dark" else "Light"
+        # On récupère le theme de notre système (darkdetect = pc, _get_theme_style = smartphone)
+        if darkdetect.isDark() or self.theme_cls._get_theme_style == "Dark":
+            self.theme_cls.theme_style = "Dark"
+        else:
+            self.theme_cls.theme_style = "Light"
+        
+        # On envoi le thème utilisé
         self.textStyle = "Sombre" if self.theme_cls.theme_style == "Dark" else "Claire"
         
         # On créé l'animation du changement de theme style
         self.theme_cls.theme_style_switch_animation = True
         self.theme_cls.theme_style_switch_animation_duration = 0.5
         
-        # On renvoi l'écran
-        return MainScreen()
+        sm = WindowManager()
+        sm.add_widget(MainScreen(name="ecran_principal"))
+        sm.add_widget(SecondScreen(name="ecran_interaction"))
+        
+        return sm
     
     # On va changer le theme style qui prendra en compte l'animation
     def switchThemeStyle(self):
@@ -89,9 +88,6 @@ class MainApp(MDApp):
         
         self.textStyle = "Sombre" if self.theme_cls.theme_style == "Dark" else "Claire"
     
-    
-    
+
 if __name__ == "__main__":
-    
-    # On lance le programme
     MainApp().run()

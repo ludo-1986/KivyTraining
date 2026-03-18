@@ -9,6 +9,14 @@
         orientation: "vertical"  # Donne l'orientation de l'écran
         padding: "20dp"
 
+        MDButton:
+            style: "filled"
+            pos_hint: {'center_x': 0.5,'center_y': 0.5}
+            on_release: root.manager.current = "ecran_interaction"
+
+            MDButtonText:
+                text: "Aller à l'autre écran"
+
         MDLabel:
             text: root.textLabel
             halign: "center"

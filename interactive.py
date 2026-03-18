@@ -12,44 +12,29 @@ class SecondScreen(MDScreen):
         
         # On récupère le nom de l'utilisateur
         userName = self.ids.fieldName.text.capitalize()
-        userAge = self.ids.fieldAge.text
+        userAge = int(self.ids.fieldAge.text) if self.ids.fieldAge.text else 0
         
         if userName:
+            
+            # On récupère l'application qui tourne et on change sa variable
+            app = MDApp.get_running_app()
+            app.userNameStored = userName
+            
+            # On change directement
+            # ecran_accueil = self.manager.get_screen("ecran_principal")
+            # ecran_accueil.changeTextLabel()
+            
             self.textHello = f"Bonjour {userName}, ravis de te rencontrer"
         else:
             self.textHello = "Bonjour utilisateur, comment vous appelez vous ?"
             
         if userAge:
             self.textHello += f"\nVous avez {userAge} ans,"
-            if int(userAge) >= 60:
+            if userAge >= 60:
                 self.textHello += "vous êtes senior"
-            elif int(userAge) < 18:
+            elif userAge < 18:
                 self.textHello += "vous êtes mineur"
             else:
                 self.textHello += "vous êtes majeur"
         else:
             self.textHello += "\nNous n'avons pas reçu votre age"
-            
-        
-        
-class InteractiveApp(MDApp):
-    
-    # La fonction pour construire la fenêtre de l'application
-    def build(self):
-        
-        # On choisi un thème de couleur
-        self.theme_cls.primary_palette = "SeaGreen"
-        
-        # Cette ligne permet de récupérer le style du système (PC ou Smartphone)
-        self.theme_cls.theme_style = "Dark" 
-        self.textStyle = "Sombre" if self.theme_cls.theme_style == "Dark" else "Claire"
-        
-        # On renvoi l'écran
-        return SecondScreen()
-    
-    
-    
-if __name__ == "__main__":
-    
-    # On lance le programme
-    InteractiveApp().run()
