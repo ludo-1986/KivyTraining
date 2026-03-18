@@ -1,4 +1,4 @@
-from kivy.metrics import dp
+from kivy.metrics import dp, sp
 from kivy.properties import StringProperty
 
 from kivymd.app import MDApp
@@ -8,8 +8,10 @@ from kivymd.uix.dialog import (
     MDDialogSupportingText,
     MDDialogButtonContainer,
     MDDialogContentContainer,
+    MDDialogIcon,
 )
 from kivymd.uix.button import MDButton, MDButtonText
+from kivymd.uix.label import MDIcon
 from kivymd.uix.textfield import MDTextField, MDTextFieldHintText
 from kivymd.uix.screen import MDScreen
 
@@ -31,7 +33,12 @@ class SecondScreen(MDScreen):
             )
 
             self.dialogAge = MDDialog(
-                MDDialogHeadlineText(text="Âge manquant"),
+                MDDialogIcon(
+                    icon="alert-circle",
+                    theme_text_color="Custom",
+                    text_color=self.theme_cls.onErrorColor,
+                ),
+                MDDialogHeadlineText(text="Vous devez rentrer un âge"),
                 MDDialogContentContainer(self.age_input_field),
                 MDDialogButtonContainer(
                     MDButton(
@@ -41,6 +48,8 @@ class SecondScreen(MDScreen):
                         on_release=self.process_dialog_age 
                     ),
                 ),
+                theme_bg_color="Custom",
+                md_bg_color=self.theme_cls.errorContainerColor,
             )
         self.dialogAge.open()
 
