@@ -1,25 +1,34 @@
 <SecondScreen>:
     md_bg_color: self.theme_cls.surfaceColor
 
+    MDTopAppBar:
+        type: "small"
+        pos_hint: {'right': 1.0,'top': 1.0}
+        theme_elevation_level: "Custom"
+        elevation_level: 5
+        theme_shadow_color: "Custom"
+        shadow_color: "orange"
+
+        MDTopAppBarLeadingButtonContainer:
+
+            MDActionTopAppBarButton:
+                icon: "home-circle"
+                on_release: 
+                    root.manager.transition.direction = "right"
+                    root.manager.current = "ecran_principal"
+
+        MDTopAppBarTitle:
+            text: "Interaction avec l'utilisateur"
+
+        MDTopAppBarTrailingButtonContainer:
+
+            MDActionTopAppBarButton:
+                icon: "language-python"
+
     MDBoxLayout:
         orientation: "vertical"  # Donne l'orientation de l'écran
         padding: dp(30)
         spacing: dp(30)
-
-        MDButton:
-            style: "filled"
-            pos_hint: {'center_x': 0.5,'center_y': 0.5}
-            on_release: root.manager.current = "ecran_principal"
-
-            MDButtonText:
-                text: "revenir à l'entrée"
-
-        MDLabel:
-            text: "Interaction avec l'utilisateur"
-            halign: "center"
-            font_style: "Display"
-            role: "medium"
-            pos_hint: {'center_x': 0.5,'center_y': 0.5}
 
         MDLabel:
             text: root.textHello

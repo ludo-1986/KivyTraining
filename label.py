@@ -12,7 +12,7 @@ class MainScreen(MDScreen):
     
     def on_pre_enter(self):
         if self.app.userNameStored != "Utilisateur":
-            self.textLabel = f"Les bases sont maîtrisées, !!! BRAVO {self.app.userNameStored} !!!"
+            self.textLabel = f"Bases maîtrisées !!! BRAVO {self.app.userNameStored} !!!"
     
     # On créé une variable pour changer le texte de notre label
     textLabel = StringProperty("Maîtrise des bases")
@@ -28,9 +28,9 @@ class MainScreen(MDScreen):
     def changeTextLabel(self):
         
         if self.app.userNameStored != "Utilisateur":
-            self.textLabel = f"Les bases sont maîtrisées, !!! BRAVO {self.app.userNameStored} !!!"
+            self.textLabel = f"Bases maîtrisées !!! BRAVO {self.app.userNameStored} !!!"
         else:
-            self.textLabel = "Les bases sont maîtrisées, mais il reste un écran !"
+            self.textLabel = "Il reste un écran !"
         
     # On change la police
     def changePoliceLabel(self):

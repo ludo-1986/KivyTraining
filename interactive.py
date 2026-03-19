@@ -1,4 +1,4 @@
-from kivy.metrics import dp, sp
+from kivy.metrics import dp
 from kivy.properties import StringProperty
 
 from kivymd.app import MDApp
@@ -11,7 +11,6 @@ from kivymd.uix.dialog import (
     MDDialogIcon,
 )
 from kivymd.uix.button import MDButton, MDButtonText
-from kivymd.uix.label import MDIcon
 from kivymd.uix.textfield import MDTextField, MDTextFieldHintText
 from kivymd.uix.screen import MDScreen
 

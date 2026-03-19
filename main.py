@@ -58,7 +58,7 @@ class MainApp(MDApp):
         Builder.load_file("label.kv")
         Builder.load_file("interactive.kv")
     
-        self.theme_cls.primary_palette = "SeaGreen"
+        self.theme_cls.primary_palette = "Orange"
         
         # On récupère le theme de notre système (darkdetect = pc, _get_theme_style = smartphone)
         if darkdetect.isDark() or self.theme_cls._get_theme_style == "Dark":
